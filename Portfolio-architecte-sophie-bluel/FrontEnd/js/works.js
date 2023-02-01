@@ -19,6 +19,8 @@ function eventButton(){
 }
 
 
-
-
+// pour mettre le lien de la page courante a gras
+// a faire
+// const testlink = document.querySelectorAll("a");
+// console.log(testlink);
 
