@@ -18,6 +18,7 @@ function eventLogout(){
 		linkLogout.addEventListener("click", function (event) {
 			event.preventDefault();
 			window.localStorage.removeItem("tokenUser");
+			window.localStorage.removeItem("data_works"); // Force works reload from BackEnd after logout
 			window.location.replace("./");
 		});
 	
