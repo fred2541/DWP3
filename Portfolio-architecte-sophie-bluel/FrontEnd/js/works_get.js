@@ -1,8 +1,15 @@
-export async function getWorks(categories) {
+export async function getWorks(categories,categories_id = null,categories_name = null) {
     document.querySelector(".gallery").innerHTML = "";
-    console.log("demande categories: " + categories);
+    // console.log("demande categories: " + categories);
     const reponse = await fetch('http://localhost:5678/api/works');
     const works = await reponse.json();
+    
+    // Add filter 'Tous' in first only the first load of index.html
+    if (categories_id !== null) {
+        categories_id.add(0);
+        categories_name.add('Tous');
+    }
+    
 
     // Filtrage de categories demander
     if (categories == 0) {
@@ -31,7 +38,15 @@ export async function getWorks(categories) {
     	worksElements.appendChild(worksFigure);
     	worksFigure.appendChild(imageFigure);
     	worksFigure.appendChild(captionFigure);
-    }
 
-}
+        // add Categories in Set categories_id and categories_name
+        if (categories_id !== null) {
+            categories_id.add(figure.category.id);
+            categories_name.add(figure.category.name);
+        }
+    }
+    // console.log(categories_id);
+    // console.log(categories_name);
+        return; // Send return at end of function for await !!
+    }
 

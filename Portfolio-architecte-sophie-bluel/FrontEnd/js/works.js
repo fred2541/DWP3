@@ -1,8 +1,14 @@
 import { getWorks } from "./works_get.js";
-import {getCategories } from "./categories_get.js";
+import { getCategories } from "./categories_get.js";
 
-getCategories().then(function (){ eventButton(); });
-getWorks(0);
+
+ var categories_id = new Set();
+ var categories_name = new Set();
+// getWorks(0,categories_id,categories_name).then(function (){});
+await getWorks(0,categories_id,categories_name);
+
+getCategories(categories_id,categories_name).then(function (){ eventButton(); });
+
 
 
 // Gestion des button de categories
