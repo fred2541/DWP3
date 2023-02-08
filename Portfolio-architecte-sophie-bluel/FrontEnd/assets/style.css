@@ -54,6 +54,27 @@ body {
 	font-size: 14px;
 }
 
+body > div:first-child {
+	display: none;
+	padding: 10px 0px 10px 0px;
+	justify-content: center;
+	align-items: center;
+	background: black;
+	position: relative;
+	z-index: 999; /* force boxTop on top for no background transparency */
+}
+
+body > div:first-child a {
+	color: white;
+}
+
+body > div:first-child button {
+	background-color: white;
+	border-radius: 60px;
+	padding: 11px 23px 11px 23px;
+	margin-left: 21px;
+}
+
 header, main {
 	background: #FFFEF8;
 }
@@ -135,6 +156,13 @@ li:hover {
 #introduction figure {
 	flex: 1
 }
+
+/* add margin-left for figcaption - 30px (original margin-left of link) */
+#introduction figure figcaption {
+	margin-left: calc(10% - 30px);
+	margin-top: 15px;
+}
+
 #introduction img {
 	display: block;
 	margin: auto;
@@ -144,6 +172,12 @@ li:hover {
 #introduction article {
 	flex: 1
 }
+
+#introduction article > div:first-child {
+	margin-left: -30px;
+	margin-bottom: 20px;
+}
+
 #introduction h2 {
 	margin-bottom: 1em;
 }

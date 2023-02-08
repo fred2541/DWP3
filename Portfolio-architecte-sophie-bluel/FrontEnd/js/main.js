@@ -5,6 +5,11 @@ isLoged();
 
 function isLoged () {
 	if (window.localStorage.getItem("tokenUser") != null) { // On a un token
+
+		// add box on top of page for "Mode édition" and "publier les changement"
+		const boxTopElement = document.querySelector('body > div:first-child');
+		boxTopElement.style.display = "flex";
+
 		const queryALogin = document.querySelector('[href*="login.html"]');
 		queryALogin.innerText = "logout";
 		queryALogin.setAttribute("href", "logout.html");
@@ -15,7 +20,7 @@ function isLoged () {
 			a.style.display = "initial";
 		})
 		const woksH2 = document.querySelector('#portfolio h2');
-		/* add marginleft for H2 of editlinkobj length *2 for ~center "Mes Projets" */
+		 // add marginleft for H2 of editlinkobj length *2 for ~center "Mes Projets" 
 		woksH2.style.marginLeft = (editLinkObj[0].offsetWidth * 2 ) + 'px';
 	}
 }

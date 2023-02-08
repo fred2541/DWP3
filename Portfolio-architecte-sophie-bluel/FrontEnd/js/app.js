@@ -63,6 +63,7 @@ const loadModal = async function (url) {
 	const html = await fetch(url).then(response => response.text());
 	const element = document.createRange().createContextualFragment(html).querySelector(target);
 	if (element === null) {throw 'erreur'} /* a garder ?*/
+	// console.log(document.body);
 	document.body.append(element);
 	return element;
 }
