@@ -344,6 +344,7 @@ footer nav ul {
 	max-height: calc(100vh - 20px);
 	padding: 20px;
 	background-color: white;
+	border-radius: 10px;
 
 }
 
