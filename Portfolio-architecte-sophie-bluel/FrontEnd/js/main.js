@@ -9,11 +9,14 @@ function isLoged () {
 		queryALogin.innerText = "logout";
 		queryALogin.setAttribute("href", "logout.html");
 		eventLogout(); // cree l'event logout
-		const editLink = Array.from(document.querySelectorAll('.js-modal')); /* all js-modal*/
-		console.log(editLink)
+		const editLinkObj = document.querySelectorAll('.js-modal');
+		const editLink = Array.from(editLinkObj); /* all js-modal*/
 		editLink.forEach(a => {
 			a.style.display = "initial";
 		})
+		const woksH2 = document.querySelector('#portfolio h2');
+		/* add marginleft for H2 of editlinkobj length *2 for ~center "Mes Projets" */
+		woksH2.style.marginLeft = (editLinkObj[0].offsetWidth * 2 ) + 'px';
 	}
 }
 
