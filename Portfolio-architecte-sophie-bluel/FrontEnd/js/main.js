@@ -9,6 +9,11 @@ function isLoged () {
 		queryALogin.innerText = "logout";
 		queryALogin.setAttribute("href", "logout.html");
 		eventLogout(); // cree l'event logout
+		const editLink = Array.from(document.querySelectorAll('.js-modal')); /* all js-modal*/
+		console.log(editLink)
+		editLink.forEach(a => {
+			a.style.display = "initial";
+		})
 	}
 }
 

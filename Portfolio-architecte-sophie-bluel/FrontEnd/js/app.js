@@ -57,8 +57,14 @@ const focusInModal = function (e) {
 }
 
 const loadModal = async function (url) {
+	const target = '#' + url.split('#')[1];
+	const existingModal = document.querySelector(target);
+	if (existingModal !== null) {return existingModal;}
 	const html = await fetch(url).then(response => response.text());
-	console.log(html)
+	const element = document.createRange().createContextualFragment(html).querySelector(target);
+	if (element === null) {throw 'erreur'} /* a garder ?*/
+	document.body.append(element);
+	return element;
 }
 
 document.querySelectorAll('.js-modal').forEach(a => {
