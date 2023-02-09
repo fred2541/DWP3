@@ -1,14 +1,17 @@
-export async function getCategories(categories_id,categories_name) {
+export async function getCategories() {
 
-// console.log(categories_id)
+console.log('tri des categories')
     // Get filter from API --> not good
     // const reponse = await fetch('http://localhost:5678/api/categories');
     // const categories = await reponse.json();
 
-    const iterator_name = categories_name.values();
-
-    for (let i of categories_id) {
-        const button = categories_id;
+    // const iterator_name = categories_name.values();
+    const categories_name = new Set(JSON.parse(window.localStorage.getItem("data_cat_name")))
+    const iterator_name = categories_name.values()
+    let iterator_id = JSON.parse(window.localStorage.getItem("data_cat_id"))
+    
+    for (let i of iterator_id) {
+        const button = iterator_id
         // recuperation element du DOM gallery
         const buttonElements = document.querySelector(".search-filter")
         // création du div conteneur du bouton

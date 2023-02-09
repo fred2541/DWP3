@@ -1,4 +1,6 @@
 export async function getWorks(categories,categories_id = null,categories_name = null,viewModal = null) {
+var categories_id = new Set();
+var categories_name = new Set();
 
     // fetch Works from LocalStorage OR from API
     if (window.localStorage.getItem("data_works") === null) {
@@ -77,6 +79,11 @@ export async function getWorks(categories,categories_id = null,categories_name =
         categories_name.add(figure.category.name);
     }
 }
+// Save categories_id and categories_name on LocalStorage
+window.localStorage.removeItem("data_cat_id")
+window.localStorage.removeItem("data_cat_name")
+window.localStorage.setItem("data_cat_id", JSON.stringify(Array.from(categories_id)));
+window.localStorage.setItem("data_cat_name", JSON.stringify(Array.from(categories_name)));
         return; // Send return at end of function for await !!
     }
 
