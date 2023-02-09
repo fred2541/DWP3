@@ -1,6 +1,5 @@
 export async function getWorks(categories,categories_id = null,categories_name = null) {
-    document.querySelector(".gallery").innerHTML = "";
-    
+
     // fetch Works from LocalStorage OR from API
     if (window.localStorage.getItem("data_works") === null) {
         console.log("Chargement des Works par l'API");
@@ -18,6 +17,17 @@ export async function getWorks(categories,categories_id = null,categories_name =
     if (categories_id !== null) {
         categories_id.add(0);
         categories_name.add('Tous');
+        var selectorQallery = ".gallery"
+        var viewModal = false
+    } else { // if categories_id is NULL --> view in modal
+        var selectorQallery = ".modal .gallery"
+        var viewModal = true
+    }
+
+    if (viewModal) {
+        document.querySelector(selectorQallery).innerHTML = "";
+    } else {
+        document.querySelector(selectorQallery).innerHTML = "";
     }
 
 
@@ -33,7 +43,8 @@ export async function getWorks(categories,categories_id = null,categories_name =
     for (let i = 0; i < worksFiltrees.length; i++) {
        const figure = worksFiltrees[i];
     	// recuperation element du DOM gallery
-       const worksElements = document.querySelector(".gallery")
+       const worksElements = document.querySelector(selectorQallery)
+       // console.log(worksElements)
     	// création de la balise figure
        const worksFigure = document.createElement("figure");
     	// creation des balise img et figcaption
@@ -41,16 +52,22 @@ export async function getWorks(categories,categories_id = null,categories_name =
        imageFigure.src = figure.imageUrl;
        imageFigure.alt = figure.title;
        imageFigure.crossOrigin = "Anonymous"
-       const captionFigure = document.createElement("figcaption");
-       captionFigure.innerText = figure.title;
+       if (!viewModal) {
+        var captionFigure = document.createElement("figcaption");
+        captionFigure.innerText = figure.title;
+        } else {
+            var captionFigure = document.createElement("figcaption");
+            captionFigure.innerHTML = '<a href="#id' + figure.id + '">éditer</a>';
+        }
+
 
     	// attache la balise figure a la section gallery
-       worksElements.appendChild(worksFigure);
-       worksFigure.appendChild(imageFigure);
-       worksFigure.appendChild(captionFigure);
+    worksElements.appendChild(worksFigure);
+    worksFigure.appendChild(imageFigure);
+    worksFigure.appendChild(captionFigure);
 
         // add Categories in Set categories_id and categories_name
-       if (categories_id !== null) {
+    if (categories_id !== null) {
         categories_id.add(figure.category.id);
         categories_name.add(figure.category.name);
     }
