@@ -400,13 +400,28 @@ footer nav ul {
 
 .modal-wrapper > div:nth-child(3) > div { /* gallery */
 	width: 420px;
+	margin-top: 46px;
 	flex-wrap: wrap;
-	grid-column-gap: 6px;
+	grid-column-gap: 7px;
 	grid-row-gap: 13px;
 }
 
 .modal-wrapper .gallery figure img {
 	width: 78px;
+}
+
+.modal-wrapper .gallery figure {
+	position: relative;
+}
+
+.modal-wrapper .gallery figure .delete {
+	position: absolute;
+	background: black;
+	top: 2px;
+	right: 2px;
+	padding: 4px;
+	border-radius: 2px;
+	z-index: 100;
 }
 
 /* END Style in Modal */

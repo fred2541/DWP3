@@ -56,6 +56,10 @@ export async function getWorks(categories,categories_id = null,categories_name =
         var captionFigure = document.createElement("figcaption");
         captionFigure.innerText = figure.title;
         } else {
+            var spanFigure = document.createElement("span");
+            spanFigure.setAttribute('class', 'delete')
+            spanFigure.setAttribute('id', figure.id)
+            spanFigure.innerHTML = '<i class="fa-solid fa-trash-can fa-inverse"></i>'
             var captionFigure = document.createElement("figcaption");
             captionFigure.innerHTML = '<a href="#id' + figure.id + '">éditer</a>';
         }
@@ -63,8 +67,12 @@ export async function getWorks(categories,categories_id = null,categories_name =
 
     	// attache la balise figure a la section gallery
     worksElements.appendChild(worksFigure);
+    if (viewModal) {
+        worksFigure.appendChild(spanFigure);
+    }
     worksFigure.appendChild(imageFigure);
     worksFigure.appendChild(captionFigure);
+    
 
         // add Categories in Set categories_id and categories_name
     if (categories_id !== null) {
