@@ -1,0 +1,58 @@
+/*
+Error: Invalid CSS after ""Bearer " + window": expected expression (e.g. 1px, bold), was ".localStorage.g..."
+        on line 5 of /home/fred/Documents/OpenClassRooms/P3/Portfolio-architecte-sophie-bluel/FrontEnd/js/works_delete.js
+
+1: export async function deleteWorks(idToDel = null) {
+2: 	if (!idToDel) {return} // quit if no ID specified !
+3: 
+4: 	const deleteWork = {
+5: 		Authorization: "Bearer " + window.localStorage.getItem("tokenUser"),
+6: 	}
+7: 
+8: 	// Make body
+9: 	const bodyDelete = JSON.stringify(deleteWork)
+10: 	const reponse = await fetch("http://localhost:5678/api/works/" + idToDel, {
+
+Backtrace:
+/home/fred/Documents/OpenClassRooms/P3/Portfolio-architecte-sophie-bluel/FrontEnd/js/works_delete.js:5
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/scss/parser.rb:1308:in `expected'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/script/lexer.rb:240:in `expected!'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/script/parser.rb:897:in `assert_done'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/script/parser.rb:69:in `parse'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/script/parser.rb:228:in `parse'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/script.rb:27:in `parse'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:1169:in `parse_script'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:745:in `parse_property'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:707:in `parse_property_or_rule'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:666:in `parse_line'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:539:in `build_tree'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:558:in `block in append_children'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:557:in `each'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:557:in `append_children'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:548:in `block in build_tree'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:541:in `each'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:541:in `build_tree'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:558:in `block in append_children'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:557:in `each'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:557:in `append_children'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:548:in `block in build_tree'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:541:in `each'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:541:in `build_tree'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:558:in `block in append_children'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:557:in `each'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:557:in `append_children'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:417:in `_to_tree'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:307:in `render_with_sourcemap'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:383:in `run'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:63:in `process_result'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/exec/base.rb:50:in `parse'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/exec/base.rb:18:in `parse!'
+/usr/share/rubygems-integration/all/gems/sass-3.7.4/bin/sass:8:in `<top (required)>'
+/usr/local/bin/sass:25:in `load'
+/usr/local/bin/sass:25:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"\"Bearer \" + window\": expected expression (e.g. 1px, bold), was \".localStorage.g...\"\A         on line 5 of /home/fred/Documents/OpenClassRooms/P3/Portfolio-architecte-sophie-bluel/FrontEnd/js/works_delete.js\A \A 1: export async function deleteWorks(idToDel = null) {\A 2: 	if (!idToDel) {return} // quit if no ID specified !\A 3: \A 4: 	const deleteWork = {\A 5: 		Authorization: \"Bearer \" + window.localStorage.getItem(\"tokenUser\"),\A 6: 	}\A 7: \A 8: 	// Make body\A 9: 	const bodyDelete = JSON.stringify(deleteWork)\A 10: 	const reponse = await fetch(\"http://localhost:5678/api/works/\" + idToDel, {"; }

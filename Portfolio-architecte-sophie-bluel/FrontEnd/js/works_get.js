@@ -1,4 +1,4 @@
-export async function getWorks(categories,categories_id = null,categories_name = null) {
+export async function getWorks(categories,categories_id = null,categories_name = null,viewModal = null) {
 
     // fetch Works from LocalStorage OR from API
     if (window.localStorage.getItem("data_works") === null) {
@@ -17,16 +17,13 @@ export async function getWorks(categories,categories_id = null,categories_name =
     if (categories_id !== null) {
         categories_id.add(0);
         categories_name.add('Tous');
-        var selectorQallery = ".gallery"
-        var viewModal = false
-    } else { // if categories_id is NULL --> view in modal
-        var selectorQallery = ".modal .gallery"
-        var viewModal = true
     }
 
-    if (viewModal) {
+    if (viewModal) { // view in modal
+        var selectorQallery = ".modal .gallery"
         document.querySelector(selectorQallery).innerHTML = "";
-    } else {
+    } else { // view in normal mode
+        var selectorQallery = ".gallery"
         document.querySelector(selectorQallery).innerHTML = "";
     }
 
