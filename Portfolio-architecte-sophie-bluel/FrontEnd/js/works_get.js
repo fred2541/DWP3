@@ -46,6 +46,7 @@ var categories_name = new Set();
        // console.log(worksElements)
     	// création de la balise figure
        const worksFigure = document.createElement("figure");
+       worksFigure.setAttribute('id', figure.id)
     	// creation des balise img et figcaption
        const imageFigure = document.createElement("img");
        imageFigure.src = figure.imageUrl;

@@ -29,7 +29,8 @@ function eventButton(){
 	buttonDelete.forEach( function(item) {
 		item.addEventListener("click", function () {
 			// console.log(item.getAttribute("id"))
-			deleteWorks(item.getAttribute("id")).then(function(){loadGetWorks(true)})
+			// deleteWorks(item.getAttribute("id")).then(function(){loadGetWorks(true)})
+			deleteWorks(item.getAttribute("id"))
 		});
 	});
 
