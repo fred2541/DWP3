@@ -5,7 +5,9 @@ console.log('tri des categories')
     // const reponse = await fetch('http://localhost:5678/api/categories');
     // const categories = await reponse.json();
 
-    // const iterator_name = categories_name.values();
+    // Reset the filter html
+    document.querySelector(".search-filter").innerHTML = ""
+    
     const categories_name = new Set(JSON.parse(window.localStorage.getItem("data_cat_name")))
     const iterator_name = categories_name.values()
     let iterator_id = JSON.parse(window.localStorage.getItem("data_cat_id"))
