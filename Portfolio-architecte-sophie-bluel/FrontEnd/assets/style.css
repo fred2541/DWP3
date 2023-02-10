@@ -424,4 +424,30 @@ footer nav ul {
 	z-index: 100;
 }
 
+.modal-wrapper > div:nth-child(4) { /* Grey bar */
+	justify-content: center;
+	align-items: center;
+	
+}
+
+.modal-wrapper > div:nth-child(4) > div {
+	width: 420px;
+	border-top: 1px solid #B3B3B3;
+	margin-top: 47px;
+}
+
+/* btn add work */
+
+.modal-wrapper > div:last-child { /* link delete gallery */
+	justify-content: center;
+	font-family: 'Syne';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+	color: #D65353;
+	margin-top: 23px;
+	margin-bottom: 48px;
+} 
+
 /* END Style in Modal */
