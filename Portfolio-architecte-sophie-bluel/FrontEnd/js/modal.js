@@ -5,7 +5,7 @@ import { loadGetCategories } from "./works.js";
 
 var reloadWorksBack = false
 
-async function loadGetWorks(reloadWorksBack){
+async function loadGetWorks(reloadWorksBack = false){
 	console.log('loadgetwork')
 
 	// make card for modal
@@ -28,8 +28,6 @@ function eventButton(){
 	
 	buttonDelete.forEach( function(item) {
 		item.addEventListener("click", function () {
-			// console.log(item.getAttribute("id"))
-			// deleteWorks(item.getAttribute("id")).then(function(){loadGetWorks(true)})
 			deleteWorks(item.getAttribute("id"))
 		});
 	});
