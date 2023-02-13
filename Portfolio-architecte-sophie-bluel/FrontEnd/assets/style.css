@@ -438,7 +438,9 @@ footer nav ul {
 
 /* btn add work */
 
-.modal-wrapper > div:last-child { /* link delete gallery */
+.modal-wrapper > div:last-child,
+.modal-wrapper > div:last-child a { /* link delete gallery */
+	display: flex;
 	justify-content: center;
 	font-family: 'Syne';
 	font-style: normal;
