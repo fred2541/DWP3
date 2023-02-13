@@ -38,12 +38,13 @@ function eventButton(){
 function deleteAllWorks() {
 	const linkDeleteAll = document.querySelector(".js-delete-all")
 	linkDeleteAll.addEventListener("click", function() {
-		const works = JSON.parse(window.localStorage.getItem("data_works"));
-		for (let i = 0; i < works.length; i++) {
-			console.log('id' + i + ' to del')
+		if (confirm("êtes-vous sûr de vouloir tout supprimer ?")) {
+			const works = JSON.parse(window.localStorage.getItem("data_works"));
+			for (let i = 0; i < works.length; i++) {
+				console.log('id' + i + ' to del')
 			// deleteWorks(i) // Delete ID from DB and LocalStorage
+			}
 		}
-	
 	})
 	
 }
