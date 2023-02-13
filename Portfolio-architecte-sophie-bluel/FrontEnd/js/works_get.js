@@ -55,11 +55,19 @@ var categories_name = new Set();
        if (!viewModal) {
         var captionFigure = document.createElement("figcaption");
         captionFigure.innerText = figure.title;
-        } else {
+        } else { // View in modal mode
+            // add icon to Delete
             var spanFigure = document.createElement("span");
             spanFigure.setAttribute('class', 'delete')
             spanFigure.setAttribute('id', figure.id)
             spanFigure.innerHTML = '<i class="fa-solid fa-trash-can fa-inverse"></i>'
+            // add icon to zoom
+            var spanFigureZoom = document.createElement("span")
+            spanFigureZoom.setAttribute('class', 'zoom')
+            spanFigureZoom.setAttribute('id', figure.id)
+            spanFigureZoom.innerHTML = '<i class="fa-solid fa-up-down-left-right fa-inverse"></i>'
+
+            // Txt éditer
             var captionFigure = document.createElement("figcaption");
             captionFigure.innerHTML = '<a href="#id' + figure.id + '">éditer</a>';
         }
@@ -67,7 +75,8 @@ var categories_name = new Set();
 
     	// attache la balise figure a la section gallery
     worksElements.appendChild(worksFigure);
-    if (viewModal) {
+    if (viewModal) { // add <span> only in view modal (delete + zoom)
+        worksFigure.appendChild(spanFigureZoom)
         worksFigure.appendChild(spanFigure);
     }
     worksFigure.appendChild(imageFigure);

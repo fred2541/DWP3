@@ -20,7 +20,8 @@ async function loadGetWorks(reloadWorksBack = false){
 }
 
 loadGetWorks(reloadWorksBack)
-deleteAllWorks()
+deleteAllWorks() // add Event DeleteAll
+zoomWork() // Add event for zoom
 
 
 // Event on <span> delete for each card
@@ -47,4 +48,22 @@ function deleteAllWorks() {
 		}
 	})
 	
+}
+
+function zoomWork() {
+	const workToZoom = document.querySelectorAll(".gallery figure")
+
+	workToZoom.forEach( function(item) {
+		item.addEventListener("mouseover", (event) => {
+			// console.log('span[id="' + item.id + '"] .zoom')
+		const spanToZoom = document.querySelector('.gallery span[id="' + item.id + '"] ')
+		spanToZoom.style.display = "initial"
+		})
+
+		item.addEventListener("mouseout", (event) => {
+			// console.log('span[id="' + item.id + '"] .zoom')
+		const spanToZoom = document.querySelector('.gallery span[id="' + item.id + '"] ')
+		spanToZoom.style.display = "none"
+		})
+	})
 }

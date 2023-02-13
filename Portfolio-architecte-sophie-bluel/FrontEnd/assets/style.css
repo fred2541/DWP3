@@ -424,6 +424,17 @@ footer nav ul {
 	z-index: 100;
 }
 
+.modal-wrapper .gallery figure .zoom {
+	display: none;
+	position: absolute;
+	background: black;
+	top: 2px;
+	right: 25px;
+	padding: 4px;
+	border-radius: 2px;
+	z-index: 100;
+}
+
 .modal-wrapper > div:nth-child(4) { /* Grey bar */
 	justify-content: center;
 	align-items: center;
