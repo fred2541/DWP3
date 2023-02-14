@@ -9,16 +9,47 @@
 	<main>
 		<aside id="modal2" class="modal" role="dialog" aria-modal="false">
 			<div class="modal-wrapper js-modal-stop">
-				<div><a href="#" class="js-modal-close" title="Fermer"><i class="fa-solid fa-xmark fa-lg"></i></a></div>
-				<div>Galerie photo</div>
-				<div> <!-- container works list -->
-					<div class="gallery">
-						<!-- balise qui acceuil les works -->
+				<div class="view-delete"> <!-- view and delete works -->
+					<div><a href="#" class="js-modal-close" title="Fermer"><i class="fa-solid fa-xmark fa-lg"></i></a></div>
+					<div>Galerie photo</div>
+					<div> <!-- container works list -->
+						<div class="gallery">
+							<!-- balise qui acceuil les works -->
+						</div>
+					</div>
+					<div><div></div></div> <!-- Grey bar -->
+					<div><button class="js-add-work">Ajouter une photo</button> </div>
+					<div><a href="#" class="js-delete-all">Supprimer la galerie</a></div>
+				</div> <!-- fin vien and delete -->
+				<div class="add-work">  <!-- add work form -->
+					<div><i class="fa-solid fa-arrow-left"></i><a href="#" class="js-modal-close" title="Fermer"><i class="fa-solid fa-xmark fa-lg"></i></a></div>
+					<div>Ajout photo</div>
+					<div>
+						<form>
+							<div>
+								<div></div>
+								<div>
+									<i class="fa-regular fa-image"></i>
+									<label for="pictWorkAdd">+ Ajouter photo</label>
+									<input
+									type="file" id="pictWorkAdd" name="image" accept="image/png, image/jpeg"/>
+									<p>jpg, png : 4mo max</p>
+								</div>
+							</div>
+							<div>
+								<label for="title">Titre</label>
+								<input type="text" name="title">
+							</div>
+							<div>
+								<label for="cat">Categorie</label>
+								<select name="cat" id="cat">
+								</select>
+							</div>
+							<div><div></div></div>
+							<div><input type="submit" value="Valider"> </div>
+						</form>
 					</div>
 				</div>
-				<div><div></div></div> <!-- Grey bar -->
-				<div>btn add picture</div>
-				<div><a href="#" class="js-delete-all">Supprimer la galerie</a></div>
 			</div>
 			<!-- Load modal.js -->
 			<script type="module" src="js/modal.js"></script>
