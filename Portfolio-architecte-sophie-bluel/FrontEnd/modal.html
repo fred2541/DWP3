@@ -18,7 +18,7 @@
 						</div>
 					</div>
 					<div><div></div></div> <!-- Grey bar -->
-					<div><button class="js-add-work">Ajouter une photo</button> </div>
+					<div><input type="submit" class="js-add-work" value="Ajouter une photo"></div>
 					<div><a href="#" class="js-delete-all">Supprimer la galerie</a></div>
 				</div> <!-- fin vien and delete -->
 				<div class="add-work">  <!-- add work form -->
@@ -41,11 +41,12 @@
 								<input type="text" name="title">
 							</div>
 							<div>
-								<label for="cat">Categorie</label>
-								<select name="cat" id="cat">
+								<label for="category">Categorie</label>
+								<select name="category" id="category">
 								</select>
 							</div>
 							<div><div></div></div>
+							<div class="erreur"></div><!-- error -->
 							<div><input type="submit" value="Valider"> </div>
 						</form>
 					</div>

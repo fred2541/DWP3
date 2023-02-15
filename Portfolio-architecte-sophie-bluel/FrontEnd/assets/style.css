@@ -54,6 +54,11 @@ body {
 	font-size: 14px;
 }
 
+a {
+	text-decoration: none;
+	color: #000000;
+}
+
 body > div:first-child {
 	display: none;
 	padding: 10px 0px 10px 0px;
@@ -256,6 +261,7 @@ margin: auto;
 }
 
 #login input,
+.modal input,
 #contact input {
 	height: 50px;
 	font-size: 1.2em;
@@ -284,6 +290,7 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
+
 
 #login a {
 	color: #3D3D3D;
@@ -346,8 +353,9 @@ footer nav ul {
 	overflow: auto;
 	width: 630px;
 	max-width: calc(100vw - 20px);
-	max-height: calc(100vh - 20px);
+	max-height: calc(100vh - 60px);
 	padding: 20px;
+	margin-top: 50px;
 	background-color: white;
 	border-radius: 10px;
 
@@ -370,12 +378,16 @@ footer nav ul {
 /* END Style for Modal */
 
 /* Style in Modal */
+.modal .view-delete input {
+	margin: initial;	
+}
 
 .modal-wrapper > .add-work div,
 .modal-wrapper > .view-delete div {
 	display: flex;
 }
 
+.modal-wrapper > .add-work a,
 .modal-wrapper > .view-delete a {
 	text-decoration: none;
 	color: #000000;
@@ -461,10 +473,11 @@ footer nav ul {
 
 /* btn add work */
 
-.modal-wrapper > .view-delete > div:last-child,
-.modal-wrapper > .view-delete > div:last-child a { /* link delete gallery */
+.modal-wrapper > .view-delete > div:last-child {
 	display: flex;
 	justify-content: center;
+}
+.modal-wrapper > .view-delete > div:last-child a { /* link delete gallery */
 	font-family: 'Syne';
 	font-style: normal;
 	font-weight: 400;
@@ -472,7 +485,7 @@ footer nav ul {
 	line-height: 17px;
 	color: #D65353;
 	margin-top: 23px;
-	margin-bottom: 48px;
+	margin-bottom: 20px;
 }
 
 /* Form AddWork */

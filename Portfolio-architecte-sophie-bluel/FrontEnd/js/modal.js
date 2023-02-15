@@ -42,8 +42,8 @@ function deleteAllWorks() {
 		if (confirm("êtes-vous sûr de vouloir tout supprimer ?")) {
 			const works = JSON.parse(window.localStorage.getItem("data_works"));
 			for (let i = 0; i < works.length; i++) {
-				console.log('id' + i + ' to del')
-			// deleteWorks(i) // Delete ID from DB and LocalStorage
+				console.log('id ' + works[i].id + ' to del')
+			deleteWorks(works[i].id) // Delete ID from DB and LocalStorage
 			}
 		}
 	})
@@ -76,14 +76,16 @@ function addWork() {
 		// Disable btnValid
 		const btnValid = document.querySelector('.modal-wrapper > .add-work form input[type="submit"]')
 		btnValid.disabled = true
+		// Clean the erreor div
+		document.querySelector('.modal-wrapper > .add-work form > div:nth-last-child(-n+2)').innerHTML = ''
 
 		// Make the input selector for Categories
-		const selectorCategories = document.querySelector(".modal-wrapper > .add-work #cat")
+		const selectorCategories = document.querySelector(".modal-wrapper > .add-work #category")
 		const arrayCat = await getCategories(true)
 		
 		arrayCat.forEach(function(item, index, array) { // Make the select value
 			const opt = document.createElement("option")
-			opt.values = item[0]
+			opt.value = item[0]
 			opt.text = item[1]
 			selectorCategories.add(opt, null)
 		})
@@ -92,18 +94,23 @@ function addWork() {
 		modalAddWork.querySelector('.fa-arrow-left').addEventListener('click', function() { 
 			modalAddWork.style.display = "none"
 			modalView.style.display = "flex"
+			resetFormAddWork()
 		})
 
+		// Event on submit
+		const form = document.querySelector('.modal-wrapper > .add-work form')
+		form.addEventListener('submit', submitFormAddWork)
+
 		const modalInputPicture = document.querySelector("#pictWorkAdd")
-		modalInputPicture.addEventListener("change", handleFiles, false)
-		function handleFiles() { // OnChange input file
+		modalInputPicture.addEventListener("change", function handlefile() { // OnChange input file
 			// Hide btn add picture
 			document.querySelector(".modal-wrapper > .add-work form > div:first-child > div:nth-child(2)").style.display = "none"
-			
+
 			// print the img
 			const divPreview = document.querySelector(".modal-wrapper > .add-work form > div:first-child > div:first-child")
 			divPreview.style.display = "flex"
 			const file = this.files[0]
+			
 			const img = document.createElement("img")
 			img.style.width = "129px"
 			img.style.height = "169px"
@@ -113,8 +120,10 @@ function addWork() {
 			const reader = new FileReader()
 			reader.onload = (function(aImg) {return function(e) { aImg.src = e.target.result }})(img)
 			reader.readAsDataURL(file)
+			document.querySelector('.modal-wrapper > .add-work form > div:nth-last-child(-n+2)').innerHTML = ''
+			this.removeEventListener("change", handlefile)
+		}) // Fin OnChange input file
 
-		} // Fin OnChange input file
 		eventChangeForm()
 	} )
 }
@@ -126,12 +135,77 @@ function eventChangeForm () { // On change in form
 		const title = document.querySelector('.modal-wrapper > .add-work form input[name="title"]')
 		const cat = document.querySelector(".modal-wrapper > .add-work form #cat")
 		const btnValid = document.querySelector('.modal-wrapper > .add-work form input[type="submit"]')
-		if (picture.value && title.value) { // Form complete OK
+		if (picture.value || title.value) { // Form complete OK
+			console.log('form complet')
 			btnValid.disabled = false
 			btnValid.style.background = '#1D6154'
 		}else { // Form uncomplete
-			btnValid.disabled = true
+			console.log('form non complet')
+			btnValid.disabled = false
+			btnValid.style.background = '#A7A7A7'
 		}
 	})
 }
 
+async function submitFormAddWork(event) {
+	event.preventDefault()
+	const form = document.querySelector('.modal-wrapper > .add-work form')
+
+	const data = new FormData(form)
+	if (data.get("image").size == 0 ) {
+		const errorDiv = document.querySelector('.modal-wrapper > .add-work form > div:nth-last-child(-n+2)')
+		errorDiv.innerHTML = 'Vous devez choisir une image !'
+		return
+	}
+	if (data.get("title") == '') {
+		const errorDiv = document.querySelector('.modal-wrapper > .add-work form > div:nth-last-child(-n+2)')
+		errorDiv.innerHTML = 'Vous devez renseigner un titre !'
+		return	
+	}
+	
+	const charge = {
+        image: data.get("image"),
+        title: data.get("title"),
+        category: data.get("category")
+    }
+	const chargeUtile = JSON.stringify(charge);
+	let reponse = await fetch("http://localhost:5678/api/works", {
+			method: "POST",
+			headers: { 
+				// "Content-Type": "multipart/form-data",
+				"Authorization": "Bearer " + window.localStorage.getItem("tokenUser"),
+				
+			},
+			body: data,
+		})
+	if (reponse.ok) {
+		console.log('true')
+		// Remove Works from LocalStorage to FORCE usage of API
+		window.localStorage.removeItem("data_works")
+		await getWorks(0)
+		await loadGetWorks()
+
+		const modalView = document.querySelector(".modal-wrapper > .view-delete")
+		modalView.style.display = "flex"
+		const modalAddWork = document.querySelector(".modal-wrapper > .add-work")
+		modalAddWork.style.display = "none"
+
+		resetFormAddWork()
+	}
+}
+
+function resetFormAddWork() {
+	document.querySelector('.modal-wrapper > .add-work form').reset()
+	const img = document.querySelector(".modal-wrapper > .add-work form > div:first-child > div:first-child img")
+	if (img) {img.remove()}
+
+	document.querySelector(".modal-wrapper > .add-work form > div:first-child > div:first-child").style.display = "none"
+	document.querySelector(".modal-wrapper > .add-work form > div:first-child > div:nth-child(2)").style.display = "flex"
+	const SelectOption = document.querySelectorAll(".modal-wrapper > .add-work form select option")
+	SelectOption.forEach(element => element.remove())
+	
+	// Push a 'change' event to the form to update the btnValid.disabled
+	const formElement = document.querySelector(".modal-wrapper > .add-work form")
+	const event = new Event('change')
+	formElement.dispatchEvent(event)
+}

@@ -1,8 +1,6 @@
 isLoged();
 
 
-
-
 function isLoged () {
 	if (window.localStorage.getItem("tokenUser") != null) { // On a un token
 
@@ -38,11 +36,15 @@ function eventLogout(){ // remove Token and Data in LocalStorage and reload on i
 	const linkLogout = document.querySelector('[href*="logout.html"]');
 	
 		linkLogout.addEventListener("click", function (event) {
-			event.preventDefault();
-			window.localStorage.removeItem("tokenUser");
-			window.localStorage.removeItem("data_works"); // Force works reload from BackEnd after logout
-			window.location.replace("./");
+			Logout()
 		});
 	
 
+}
+
+function Logout() {
+	event.preventDefault();
+			window.localStorage.removeItem("tokenUser")
+			window.localStorage.removeItem("data_works") // Force works reload from BackEnd after logout
+			window.location.replace("./")
 }
