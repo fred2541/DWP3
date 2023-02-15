@@ -3,22 +3,13 @@ import { getCategories } from "./categories_get.js";
 import { deleteWorks } from "./works_delete.js";
 import { loadGetCategories } from "./works.js";
 
-var reloadWorksBack = false
 
-async function loadGetWorks(reloadWorksBack = false){
-	console.log('loadgetwork')
+async function loadGetWorks(){
 	// make card for modal
 	await getWorks(0,null,null,true).then(function (){ eventButton(); });
-
-	if (reloadWorksBack) {
-		await getWorks(0)
-		await loadGetCategories()
-	}
-	
-	
 }
 
-loadGetWorks(reloadWorksBack)
+loadGetWorks()
 deleteAllWorks() // add Event DeleteAll
 zoomWork() // Add event for zoom
 addWork() // Add event for btn add work
@@ -36,13 +27,13 @@ function eventButton(){
 
 }
 
+// Delete all work
 function deleteAllWorks() {
 	const linkDeleteAll = document.querySelector(".js-delete-all")
 	linkDeleteAll.addEventListener("click", function() {
 		if (confirm("êtes-vous sûr de vouloir tout supprimer ?")) {
 			const works = JSON.parse(window.localStorage.getItem("data_works"));
 			for (let i = 0; i < works.length; i++) {
-				console.log('id ' + works[i].id + ' to del')
 			deleteWorks(works[i].id) // Delete ID from DB and LocalStorage
 			}
 		}
@@ -136,11 +127,9 @@ function eventChangeForm () { // On change in form
 		const cat = document.querySelector(".modal-wrapper > .add-work form #cat")
 		const btnValid = document.querySelector('.modal-wrapper > .add-work form input[type="submit"]')
 		if (picture.value || title.value) { // Form complete OK
-			console.log('form complet')
 			btnValid.disabled = false
 			btnValid.style.background = '#1D6154'
 		}else { // Form uncomplete
-			console.log('form non complet')
 			btnValid.disabled = false
 			btnValid.style.background = '#A7A7A7'
 		}
@@ -179,7 +168,6 @@ async function submitFormAddWork(event) {
 			body: data,
 		})
 	if (reponse.ok) {
-		console.log('true')
 		// Remove Works from LocalStorage to FORCE usage of API
 		window.localStorage.removeItem("data_works")
 		await getWorks(0)
