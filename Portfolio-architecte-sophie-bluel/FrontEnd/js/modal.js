@@ -5,7 +5,7 @@ import { loadGetCategories } from "./works.js";
 
 
 async function loadGetWorks(){
-	// make card for modal
+	// make card for modal then add delete btn for all card
 	await getWorks(0,new Set(),new Set(),true).then(function (){ eventButton(); });
 }
 
@@ -41,9 +41,9 @@ function deleteAllWorks() {
 	
 }
 
+// Add icon to zoom on all card
 function zoomWork() {
 	const workToZoom = document.querySelectorAll(".gallery figure")
-
 	workToZoom.forEach( function(item) {
 		item.addEventListener("mouseover", (event) => {
 			const spanToZoom = document.querySelector('.gallery span[id="' + item.id + '"] ')
@@ -72,7 +72,7 @@ function addWork() {
 
 		// Make the input selector for Categories
 		const selectorCategories = document.querySelector(".modal-wrapper > .add-work #category")
-		const arrayCat = await getCategories(true)
+		const arrayCat = await getCategories(true) // => true to return array only
 		
 		arrayCat.forEach(function(item, index, array) { // Make the select value
 			const opt = document.createElement("option")
@@ -101,7 +101,6 @@ function addWork() {
 			const divPreview = document.querySelector(".modal-wrapper > .add-work form > div:first-child > div:first-child")
 			divPreview.style.display = "flex"
 			const file = this.files[0]
-			
 			const img = document.createElement("img")
 			img.style.width = "129px"
 			img.style.height = "169px"
@@ -161,18 +160,18 @@ async function submitFormAddWork(event) {
 	let reponse = await fetch("http://localhost:5678/api/works", {
 			method: "POST",
 			headers: { 
-				// "Content-Type": "multipart/form-data",
-				"Authorization": "Bearer " + window.localStorage.getItem("tokenUser"),
-				
+				"Authorization": "Bearer " + window.localStorage.getItem("tokenUser"),				
 			},
 			body: data,
 		})
 	if (reponse.ok) {
 		// Remove Works from LocalStorage to FORCE usage of API
 		window.localStorage.removeItem("data_works")
+		// Reload to update screen
 		await getWorks(0)
 		await loadGetWorks()
 
+		// back to view in edit mode modal
 		const modalView = document.querySelector(".modal-wrapper > .view-delete")
 		modalView.style.display = "flex"
 		const modalAddWork = document.querySelector(".modal-wrapper > .add-work")
