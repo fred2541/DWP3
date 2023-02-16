@@ -1,5 +1,4 @@
 export async function getCategories(makeSelectorAddWork = null) {
-console.log('Make btn-filter')
     // Get filter from API --> not good
     // const reponse = await fetch('http://localhost:5678/api/categories');
     // const categories = await reponse.json();

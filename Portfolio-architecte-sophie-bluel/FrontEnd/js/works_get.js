@@ -1,5 +1,4 @@
 export async function getWorks(categories,categories_id = new Set(),categories_name = new Set(),viewModal = null) {
-    console.log('Categories demander ' + categories)
 
     let works
     // fetch Works from LocalStorage OR from API
