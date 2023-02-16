@@ -6,7 +6,7 @@ import { loadGetCategories } from "./works.js";
 
 async function loadGetWorks(){
 	// make card for modal
-	await getWorks(0,null,null,true).then(function (){ eventButton(); });
+	await getWorks(0,new Set(),new Set(),true).then(function (){ eventButton(); });
 }
 
 loadGetWorks()
