@@ -160,7 +160,7 @@ async function submitFormAddWork(event) {
 	let reponse = await fetch("http://localhost:5678/api/works", {
 			method: "POST",
 			headers: { 
-				"Authorization": "Bearer " + window.localStorage.getItem("tokenUser"),				
+				"Authorization": "Bearer " + window.sessionStorage.getItem("tokenUser"),				
 			},
 			body: data,
 		})

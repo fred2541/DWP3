@@ -27,7 +27,8 @@ export function loginUser() {
 
     // sauvegarde du token en Local Storage et redirect en Acceuil
     const tokenUser = dataReponse.token;
-    window.localStorage.setItem("tokenUser", tokenUser);
+    // window.localStorage.setItem("tokenUser", tokenUser);
+    window.sessionStorage.setItem("tokenUser", tokenUser);
     window.localStorage.removeItem("data_works"); // Force works reload
     window.location.replace("./");
     });

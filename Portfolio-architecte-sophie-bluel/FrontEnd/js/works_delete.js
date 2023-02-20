@@ -6,7 +6,7 @@ export async function deleteWorks(idToDel = null) {
 			method: "DELETE",
 			headers: { 
 				"Content-Type": "application/json",
-				"Authorization": "Bearer " + window.localStorage.getItem("tokenUser")
+				"Authorization": "Bearer " + window.sessionStorage.getItem("tokenUser")
 			}
 		})
 	if (reponse.ok) {

@@ -14,16 +14,20 @@ export async function getWorks(categories,categories_id = new Set(),categories_n
 
 
     // Remove all works from gallery
+    let selectorQallery = ''
     if (viewModal) {                // in view modal
-        var selectorQallery = ".modal .gallery"
+        selectorQallery = ".modal .gallery"
         document.querySelector(selectorQallery).innerHTML = "";
     } else {                        // in view normal mode
-        var selectorQallery = ".gallery"
+        selectorQallery = ".gallery"
         document.querySelector(selectorQallery).innerHTML = "";
     }
 
     // init arrayCat to store all category
-    const arrayCat = JSON.parse(window.localStorage.getItem("data_cat"))
+    let arrayCat = []
+    if (window.localStorage.getItem("data_cat") != null) {
+        arrayCat = JSON.parse(window.localStorage.getItem("data_cat"))
+    }
 
     // Filtrage de categories demander
     let worksFiltrees

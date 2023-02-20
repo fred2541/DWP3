@@ -2,7 +2,7 @@ isLoged();
 
 
 function isLoged () {
-	if (window.localStorage.getItem("tokenUser") != null) { // On a un token
+	if (window.sessionStorage.getItem("tokenUser") != null) { // On a un token
 
 		// add box on top of page for "Mode édition" and "publier les changement"
 		const boxTopElement = document.querySelector('body > div:first-child');
@@ -44,7 +44,7 @@ function eventLogout(){ // remove Token and Data in LocalStorage and reload on i
 
 function Logout() {
 	event.preventDefault();
-			window.localStorage.removeItem("tokenUser")
+			window.sessionStorage.removeItem("tokenUser")
 			window.localStorage.removeItem("data_works") // Force works reload from BackEnd after logout
 			window.location.replace("./")
 }
