@@ -4,10 +4,19 @@ export async function getCategories(makeSelectorAddWork = null) {
     // const categories = await reponse.json();
 
     // Load data from Local Storage
-    const arrayCat = JSON.parse(window.localStorage.getItem("data_cat"))
+    let arrayCat = JSON.parse(window.localStorage.getItem("data_cat"))
 
-    // Return arraycat for the add modal ti make the selector
-    if (makeSelectorAddWork) { arrayCat.splice(0, 1); return arrayCat }
+    // Return arraycat for the add modal to make the selector form
+    // get categories list from API
+    if (makeSelectorAddWork) {
+        arrayCat = [] // reset arrayCat
+        const reponse = await fetch('http://localhost:5678/api/categories')
+        const categories = await reponse.json()
+        categories.forEach((element) => {
+            arrayCat.push([element.id,element.name])
+        })
+        return arrayCat
+    }
 
 
     // Reset the filter html
