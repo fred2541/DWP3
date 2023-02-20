@@ -23,7 +23,7 @@ export async function getWorks(categories,categories_id = new Set(),categories_n
     }
 
     // init arrayCat to store all category
-    const arrayCat = []
+    const arrayCat = JSON.parse(window.localStorage.getItem("data_cat"))
 
     // Filtrage de categories demander
     let worksFiltrees
@@ -89,8 +89,7 @@ export async function getWorks(categories,categories_id = new Set(),categories_n
 
 // Save categories_id and categories_name on LocalStorage
 // Only for no filter to have complet list
-
-if (categories == 0) {
+if (categories == 0 && arrayCat.length == 0) {
     const iterator_name = categories_name.values()
     categories_id.forEach( function(catID){
         // console.log(iterator_name.next().value)
@@ -101,7 +100,6 @@ if (categories == 0) {
     window.localStorage.setItem("data_cat", JSON.stringify(arrayCat)); // push to LocalStorage
     
 }
-
 return; // Send return at end of function for await !!
 }
 
