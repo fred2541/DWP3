@@ -8,7 +8,8 @@ export function loginUser() {
         password: event.target.querySelector("[name=password]").value,
     };
     // controle mail et pass non vide
-    if (!loginInfo.email || !loginInfo.password) {
+    const regex = new RegExp('(.*)@(.*)([.])(.*)')
+    if (!loginInfo.password || !regex.test(loginInfo.email)) {
         erreurLogin(); // Affiche le message d'erreur
         return; // Arrete la demande de log
     }

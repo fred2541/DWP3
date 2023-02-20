@@ -140,9 +140,15 @@ async function submitFormAddWork(event) {
 	const form = document.querySelector('.modal-wrapper > .add-work form')
 
 	const data = new FormData(form)
-	if (data.get("image").size == 0 ) {
+	
+	if (data.get("image").size == 0) {
 		const errorDiv = document.querySelector('.modal-wrapper > .add-work form > div:nth-last-child(-n+2)')
 		errorDiv.innerHTML = 'Vous devez choisir une image !'
+		return
+	}
+	if (data.get("image").size >= 4194304) {
+		const errorDiv = document.querySelector('.modal-wrapper > .add-work form > div:nth-last-child(-n+2)')
+		errorDiv.innerHTML = "L'image est trop lourde !"
 		return
 	}
 	if (data.get("title") == '') {
